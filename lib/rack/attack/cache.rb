@@ -1,3 +1,16 @@
+class ActiveSupport::Cache::MemoryStore
+  def increment(name, amount = 1, options = nil)
+    if num = read(name, options)
+      num = num.to_i + amount
+      write(name, num, options)
+      num
+   else
+      nil
+   end
+  end
+end
+  
+
 module Rack
   class Attack
     class Cache

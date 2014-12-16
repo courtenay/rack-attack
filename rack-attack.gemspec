@@ -20,14 +20,14 @@ Gem::Specification.new do |s|
   s.summary = %q{Block & throttle abusive requests}
   s.test_files = Dir.glob("spec/**/*")
 
-  s.required_ruby_version = '>= 1.9.2' # Maybe less?
+  s.required_ruby_version = '>= 1.8.7' # Maybe less?
 
   s.add_dependency 'rack'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'activesupport', '>= 3.0.0'
+  s.add_development_dependency 'activesupport', '~> 2.3'
   s.add_development_dependency 'redis-activesupport'
   s.add_development_dependency 'dalli'
   s.add_development_dependency 'connection_pool'

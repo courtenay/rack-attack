@@ -20,19 +20,19 @@ class Rack::Attack
     attr_accessor :notifier, :blacklisted_response, :throttled_response
 
     def whitelist(name, &block)
-      self.whitelists[name] = Whitelist.new(name, block)
+      self.whitelists[name] = Whitelist.new(name, &block)
     end
 
     def blacklist(name, &block)
-      self.blacklists[name] = Blacklist.new(name, block)
+      self.blacklists[name] = Blacklist.new(name, &block)
     end
 
     def throttle(name, options, &block)
-      self.throttles[name] = Throttle.new(name, options, block)
+      self.throttles[name] = Throttle.new(name, options, &block)
     end
 
     def track(name, options = {}, &block)
-      self.tracks[name] = Track.new(name, options, block)
+      self.tracks[name] = Track.new(name, options, &block)
     end
 
     def whitelists; @whitelists ||= {}; end

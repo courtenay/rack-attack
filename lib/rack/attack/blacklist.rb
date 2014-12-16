@@ -1,7 +1,7 @@
 module Rack
   class Attack
     class Blacklist < Check
-      def initialize(name, block)
+      def initialize(name, &block)
         super
         @type = :blacklist
       end

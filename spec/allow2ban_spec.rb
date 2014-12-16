@@ -1,3 +1,12 @@
+unless Kernel.respond_to? :require_relative
+  # Add require_relative shim for Ruby 1.8 compatibility.
+  module Kernel
+    def require_relative modname
+      require File.join(File.dirname(__FILE__), modname)
+    end
+  end
+end
+
 require_relative 'spec_helper'
 describe 'Rack::Attack.Allow2Ban' do
   before do

@@ -13,6 +13,8 @@ rescue LoadError
  #nothing to do here
 end
 
+Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+
 class MiniTest::Spec
 
   include Rack::Test::Methods
