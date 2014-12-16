@@ -1,11 +1,3 @@
-unless Hash.respond_to?(:fetch)
-  class Hash
-    def fetch(key, default=nil)
-      self[key] || default
-    end
-  end
-end
-
 module Rack
   class Attack
     class Check
