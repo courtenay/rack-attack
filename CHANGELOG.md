@@ -1,5 +1,13 @@
 # Changlog
 
+## master (unreleased)
+
+## v4.3.0 - 22 May 2015
+
+  - Redis proxy passes `raw: true` (thanks @stanhu)
+  - Redis supports `delete` method to be consistent with Dalli (thanks @stanhu)
+  - Support the ability to reset Fail2Ban count and ban flag (thanks @stanhu)
+
 ## v4.2.0 - 26 Oct 2014
  - Throttle's `period` argument now takes a proc as well as a number (thanks @gsamokovarov)
  - Invoke the `#call` method on `blacklist_response` and `throttle_response` instead of `#[]`, as per the Rack spec. (thanks @gsamokovarov)

@@ -15,7 +15,7 @@ See the [Backing & Hacking blog post](http://www.kickstarter.com/backing-and-hac
 
 ## Getting started
 
-Install the [rack-attack](http://rubygems.org/gems/rack-attack) gem; or add it to you Gemfile with bundler:
+Install the [rack-attack](http://rubygems.org/gems/rack-attack) gem; or add it to your Gemfile with bundler:
 
 ```ruby
 # In your Gemfile
@@ -36,7 +36,7 @@ Or for Rackup files:
 use Rack::Attack
 ```
 
-Add a `rack-attack.rb` file to `config/initalizers/`:
+Add a `rack-attack.rb` file to `config/initializers/`:
 ```ruby
 # In config/initializers/rack-attack.rb
 class Rack::Attack
@@ -95,7 +95,7 @@ can cleanly monkey patch helper methods onto the
 
 Define whitelists, blacklists, throttles, and tracks as blocks that return truthy values if matched, falsy otherwise. In a Rails app
 these go in an initializer in `config/initializers/`.
-A [Rack::Request](http://rack.rubyforge.org/doc/classes/Rack/Request.html) object is passed to the block (named 'req' in the examples).
+A [Rack::Request](http://www.rubydoc.info/gems/rack/Rack/Request) object is passed to the block (named 'req' in the examples).
 
 ### Whitelists
 
@@ -199,7 +199,7 @@ Rack::Attack.track("special_agent") do |req|
 end
 
 # Supports optional limit and period, triggers the notification only when the limit is reached.
-Rack::Attack.track("special_agent", :limit 6, :period => 60.seconds) do |req|
+Rack::Attack.track("special_agent", :limit => 6, :period => 60.seconds) do |req|
   req.user_agent == "SpecialAgent"
 end
 

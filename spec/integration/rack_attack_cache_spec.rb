@@ -1,6 +1,9 @@
 require_relative '../spec_helper'
 
 describe Rack::Attack::Cache do
+
+  # A convenience method for deleting a key from cache.
+  # Slightly differnet than @cache.delete, which adds a prefix.
   def delete(key)
     if @cache.store.respond_to?(:delete)
       @cache.store.delete(key)
@@ -78,6 +81,36 @@ describe Rack::Attack::Cache do
         it "must read the value with a prefix" do
           store.write(@key, "foobar", :expires_in => @expires_in)
           @cache.read("cache-test-key").must_equal "foobar"
+        end
+      end
+
+      describe "delete" do
+        it "must delete the value" do
+          store.write(@key, "foobar", :expires_in => @expires_in)
+          @cache.read('cache-test-key').must_equal "foobar"
+          store.delete(@key)
+          @cache.read('cache-test-key').must_equal nil
+        end
+      end
+
+      describe "cache#delete" do
+        it "must delete the value" do
+          @cache.write("cache-test-key", "foobar", 1)
+          store.read(@key).must_equal "foobar"
+          @cache.delete('cache-test-key')
+          store.read(@key).must_be :nil?
+        end
+      end
+
+      describe "reset_count" do
+        it "must delete the value" do
+          period = 1.minute
+          unprefixed_key = 'cache-test-key'
+          @cache.count(unprefixed_key, period)
+          period_key, _ = @cache.send(:key_and_expiry, 'cache-test-key', period)
+          store.read(period_key).to_i.must_equal 1
+          @cache.reset_count(unprefixed_key, period)
+          store.read(period_key).must_equal nil
         end
       end
     end
